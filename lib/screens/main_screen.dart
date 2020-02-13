@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'a_scree.dart';
 import 'b_screen.dart';
 import 'c_screen.dart';
+import 'd_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = 'main_screen';
@@ -17,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     AScreen(),
     BScreen(),
     CScreen(),
+    DScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -28,11 +30,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Main Screen'),
-      ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(
@@ -46,6 +46,10 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text('Profile'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.report_problem),
+            title: Text('Report'),
           )
         ],
       ),
