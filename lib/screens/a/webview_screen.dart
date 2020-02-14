@@ -8,18 +8,20 @@ class WebviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Webview Screen'),
-      ),
-      body: WebView(
-        javascriptMode: JavascriptMode.disabled,
-        onWebViewCreated: (WebViewController webViewController) {
-          webViewController.loadUrl(Uri.dataFromString(
-            htmlContent,
-            mimeType: 'text/html',
-          ).toString());
-        },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Webview Screen'),
+        ),
+        body: WebView(
+          javascriptMode: JavascriptMode.disabled,
+          onWebViewCreated: (WebViewController webViewController) {
+            webViewController.loadUrl(Uri.dataFromString(
+              htmlContent,
+              mimeType: 'text/html',
+            ).toString());
+          },
+        ),
       ),
     );
   }
