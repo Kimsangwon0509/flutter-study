@@ -6,12 +6,17 @@ class CScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: Colors.lightGreen,
-        child: Center(
-          child: MaterialButton(
-            onPressed: () {},
-            child: Text('C Screen'),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('C Screen'),
+        ),
+        body: Container(
+          color: Colors.lightGreen,
+          child: Center(
+            child: MaterialButton(
+              onPressed: () {},
+              child: Text('C Screen'),
+            ),
           ),
         ),
       ),

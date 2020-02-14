@@ -83,16 +83,18 @@ td {
         appBar: AppBar(
           title: Text('A Screen'),
         ),
-        body: Center(
-          child: MaterialButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return WebviewScreen(
-                  htmlContent: htmlTemplate,
-                );
-              }));
-            },
-            child: Text('Webview'),
+        body: Container(
+          child: Center(
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return WebviewScreen(
+                    htmlContent: htmlTemplate,
+                  );
+                }));
+              },
+              child: Text('Webview'),
+            ),
           ),
         ),
       ),

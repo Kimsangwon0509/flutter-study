@@ -6,12 +6,17 @@ class DScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: Colors.lightBlue,
-        child: Center(
-          child: MaterialButton(
-            onPressed: () {},
-            child: Text('D Screen'),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('D Screen'),
+        ),
+        body: Container(
+          color: Colors.lightBlue,
+          child: Center(
+            child: MaterialButton(
+              onPressed: () {},
+              child: Text('D Screen'),
+            ),
           ),
         ),
       ),
