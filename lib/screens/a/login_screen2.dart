@@ -38,7 +38,7 @@ class LoginScreen2 extends StatelessWidget {
                 height: 20.0,
               ),
               Container(
-                height: 40.0,
+                height: 45.0,
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: FlatButton(

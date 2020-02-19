@@ -31,7 +31,10 @@ class AScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('웹뷰화면'),
+                    child: Text(
+                      '웹뷰화면',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
                 Container(
@@ -48,7 +51,10 @@ class AScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('로그인화면1'),
+                    child: Text(
+                      '로그인화면1',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],
