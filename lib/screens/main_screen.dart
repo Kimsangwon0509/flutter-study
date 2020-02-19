@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
     DScreen(),
   ];
 
-  void onTabTapped(int index) {
+  void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
@@ -33,23 +33,25 @@ class _MainScreenState extends State<MainScreen> {
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        onTap: onTabTapped,
+        selectedItemColor: Colors.amber[800],
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            title: new Text('Home'),
+            icon: new Icon(Icons.accessibility),
+            title: new Text('이준호'),
           ),
           BottomNavigationBarItem(
-            icon: new Icon(Icons.mail),
-            title: new Text('Messages'),
+            icon: new Icon(Icons.sentiment_satisfied),
+            title: new Text('김찬영'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Profile'),
+            title: Text('김혜인'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.report_problem),
-            title: Text('Report'),
+            icon: Icon(Icons.contacts),
+            title: Text('정현식'),
           )
         ],
       ),
