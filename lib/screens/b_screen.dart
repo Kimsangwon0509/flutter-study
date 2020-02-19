@@ -8,7 +8,7 @@ class BScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('B Screen'),
+          title: Text('B Screen test'),
         ),
         body: Container(
           color: Colors.yellow,
