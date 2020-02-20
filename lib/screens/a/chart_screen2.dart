@@ -1,4 +1,3 @@
-/// Line chart example
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,6 @@ class ChartScreen2 extends StatelessWidget {
 
   ChartScreen2(this.seriesList, {this.animate});
 
-  /// Creates a [LineChart] with sample data and no transition.
   factory ChartScreen2.withSampleData() {
     return ChartScreen2(
       _createSampleData(),
@@ -42,7 +40,6 @@ class ChartScreen2 extends StatelessWidget {
     );
   }
 
-  /// Create one series with sample hard coded data.
   static List<charts.Series<LinearSales, int>> _createSampleData() {
     final data = [
       LinearSales(0, 5),
@@ -63,7 +60,6 @@ class ChartScreen2 extends StatelessWidget {
   }
 }
 
-/// Sample linear data type.
 class LinearSales {
   final int year;
   final int sales;
