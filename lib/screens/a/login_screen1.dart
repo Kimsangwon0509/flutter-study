@@ -112,10 +112,12 @@ class _LoginScreen1State extends State<LoginScreen1>
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(18.0),
                         ),
-                        child: Text('회원가입',
-                            style: TextStyle(
-                              color: Colors.white,
-                            )),
+                        child: Text(
+                          '회원가입',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                         color: Colors.lightBlueAccent,
                         onPressed: () {},
                       ),
