@@ -39,6 +39,7 @@ class FindPw extends StatelessWidget {
 //                '휴대폰 번호',
 //              ),
               TextField(
+                keyboardType: TextInputType.number,
                 decoration:
                     InputDecoration(hintText: '- 없이 입력', labelText: "휴대폰번호"),
               ),
