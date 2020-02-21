@@ -44,20 +44,20 @@ class Jo1Screen extends StatelessWidget {
         fontSize: 25,
       ),
       /* 커서 색상 */
-      cursorColor: Colors.cyan[100],
+      cursorColor: Colors.cyanAccent[100],
       cursorWidth: 2,
       /************ 입력시 *************/
       /* 스타일 */
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.cyan[100],
+            color: Colors.cyanAccent[100],
             width: 2,
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.cyan[100],
+            color: Colors.cyanAccent[100],
             width: 2,
           ),
         ),
@@ -84,7 +84,7 @@ class Jo1Screen extends StatelessWidget {
 
   Widget nextButtonSection = Container(
     child: MaterialButton(
-      disabledColor: Colors.cyan[100],
+      disabledColor: Colors.cyanAccent[100],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18.0),
       ),
