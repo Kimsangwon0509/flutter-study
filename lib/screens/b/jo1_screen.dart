@@ -88,13 +88,15 @@ class Jo1Screen extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18.0),
       ),
-      padding: const EdgeInsets.only(left: 150, right: 150, top: 10, bottom: 10),
+      padding:
+          const EdgeInsets.only(left: 150, right: 150, top: 10, bottom: 10),
       child: Text(
-        '다 음',
+        '다음',
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 15,
+          letterSpacing: 8,
         ),
       ),
     ),

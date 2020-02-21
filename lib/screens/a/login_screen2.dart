@@ -24,14 +24,18 @@ class LoginScreen2 extends StatelessWidget {
               SizedBox(height: 30.0),
               Text('휴대폰 번호'),
               TextField(
-                decoration: InputDecoration(hintText: '- 없이 입력'),
+                decoration: InputDecoration(
+                  hintText: '- 없이 입력',
+                ),
               ),
               SizedBox(
                 height: 30.0,
               ),
               Text('비밀번호'),
               TextField(
-                decoration: InputDecoration(hintText: '숫자 4자리'),
+                decoration: InputDecoration(
+                  hintText: '숫자 4자리',
+                ),
                 obscureText: true,
               ),
               SizedBox(
