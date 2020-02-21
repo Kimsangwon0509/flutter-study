@@ -1,8 +1,6 @@
 //비밀번호 찾기 페이지
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class FindPw extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
