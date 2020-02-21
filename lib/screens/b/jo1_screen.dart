@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Jo1Screen extends StatelessWidget {
-  static const String id = "jo1_screen";
+  final String title = '회원가입 테스트 화면';
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('jo1 Screen'),
+          title: Text(title),
         ),
         body: Column(
           children: [
