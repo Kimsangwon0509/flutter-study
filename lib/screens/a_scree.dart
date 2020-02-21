@@ -3,6 +3,7 @@ import 'package:flutter_study/screens/a/chart_screen1.dart';
 import 'package:flutter_study/screens/a/webview_screen.dart';
 
 import 'a/chart_screen2.dart';
+import 'a/dash_screen.dart';
 import 'a/login_screen1.dart';
 
 class AScreen extends StatelessWidget {
@@ -98,6 +99,26 @@ class AScreen extends StatelessWidget {
                     },
                     child: Text(
                       '차트화면2',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200.0,
+                  child: FlatButton(
+                    color: Colors.cyan,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return DashScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '대시화면',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
