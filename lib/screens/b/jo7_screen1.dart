@@ -8,8 +8,6 @@ class Jo7Screen1 extends StatefulWidget {
 }
 
 class _Jo7ScreenState extends State<Jo7Screen1> {
-  final String title = '약관동의';
-
   Icon leadingIcon = Icon(Icons.check_circle, color: Colors.grey[400]);
   Icon trailingIcon = Icon(Icons.keyboard_arrow_right, color: Colors.grey[400]);
 
@@ -20,7 +18,7 @@ class _Jo7ScreenState extends State<Jo7Screen1> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            title,
+            '약관동의',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
