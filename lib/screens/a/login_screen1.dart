@@ -50,125 +50,123 @@ class _LoginScreen1State extends State<LoginScreen1>
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      body: SafeArea(
-        child: Center(
-          child: Stack(
-            children: <Widget>[
-              FadeTransition(
-                opacity: _fadeInFadeOut,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xff7c94b6),
-                    image: DecorationImage(
-                      image: ExactAssetImage('images/login_background.jpg'),
-                      fit: BoxFit.fill,
-                    ),
+      body: Center(
+        child: Stack(
+          children: <Widget>[
+            FadeTransition(
+              opacity: _fadeInFadeOut,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff7c94b6),
+                  image: DecorationImage(
+                    image: ExactAssetImage('images/login_background.jpg'),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              FadeTransition(
-                opacity: _fadeInFadeOut2,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xff7c94b6),
-                    image: DecorationImage(
-                      image: ExactAssetImage('images/login_background2.jpg'),
-                      fit: BoxFit.fill,
-                    ),
+            ),
+            FadeTransition(
+              opacity: _fadeInFadeOut2,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff7c94b6),
+                  image: DecorationImage(
+                    image: ExactAssetImage('images/login_background2.jpg'),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              Opacity(
-                opacity: 0.95,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 85.0,
-                    ),
-                    Icon(
-                      Icons.desktop_mac,
-                      size: 40.0,
+            ),
+            Opacity(
+              opacity: 0.95,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: 85.0,
+                  ),
+                  Icon(
+                    Icons.desktop_mac,
+                    size: 40.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    '디아콘 당뇨',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
                       color: Colors.white,
                     ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Text(
-                      '디아콘 당뇨',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
-                        color: Colors.white,
+                  ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 35.0),
+                    child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(18.0),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 35.0),
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(18.0),
+                      child: Text(
+                        '회원가입',
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
-                        child: Text(
-                          '회원가입',
-                          style: TextStyle(
-                            color: Colors.white,
+                      ),
+                      color: Colors.lightBlueAccent,
+                      onPressed: () {},
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 35.0),
+                    child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(18.0),
+                      ),
+                      child: Text(
+                        '로그인',
+                        style: TextStyle(
+                          color: Colors.lightBlueAccent,
+                        ),
+                      ),
+                      color: Colors.white,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return LoginScreen2();
+                            },
                           ),
-                        ),
-                        color: Colors.lightBlueAccent,
-                        onPressed: () {},
-                      ),
+                        );
+                      },
                     ),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 35.0),
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(18.0),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: 35.0),
+                    child: FlatButton(
+                      child: Text(
+                        '나중에 할래요',
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
-                        child: Text(
-                          '로그인',
-                          style: TextStyle(
-                            color: Colors.lightBlueAccent,
-                          ),
-                        ),
-                        color: Colors.white,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return LoginScreen2();
-                              },
-                            ),
-                          );
-                        },
                       ),
+                      onPressed: () {},
                     ),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(horizontal: 35.0),
-                      child: FlatButton(
-                        child: Text(
-                          '나중에 할래요',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40.0,
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 40.0,
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
