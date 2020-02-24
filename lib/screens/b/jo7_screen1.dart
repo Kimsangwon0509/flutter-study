@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/b/jo7_screen2.dart';
 
@@ -43,29 +42,29 @@ class _Jo7ScreenState extends State<Jo7Screen1> {
   }
 
   Widget _acceptedAll() => Row(
-    children: <Widget>[
-      IconButton(
-        /* 전체동의는 default size보다 크게 설정 */
-        icon: Icon(
-          leadingIcon.icon,
-          color: leadingIcon.color,
-          size: 25,
-        ),
-        onPressed: null,
-      ),
-      Text(
-        '모두 동의',
-        style: TextStyle(
-          fontSize: 15,
-        ),
-      ),
-    ],
-  );
+        children: <Widget>[
+          IconButton(
+            /* 전체동의는 default size보다 크게 설정 */
+            icon: Icon(
+              leadingIcon.icon,
+              color: leadingIcon.color,
+              size: 25,
+            ),
+            onPressed: null,
+          ),
+          Text(
+            '모두 동의',
+            style: TextStyle(
+              fontSize: 15,
+            ),
+          ),
+        ],
+      );
 
-  ListTile _tile(String title, Icon leadingIcon, Icon trailing) => ListTile(
+  ListTile _tile(String title, {Icon leading, Icon trailing}) => ListTile(
         leading: Padding(
           padding: EdgeInsets.only(left: 20),
-          child: leadingIcon,
+          child: leading,
         ),
         title: Text(
           title,
@@ -73,7 +72,7 @@ class _Jo7ScreenState extends State<Jo7Screen1> {
         ),
         trailing: trailing != null
             ? IconButton(
-                icon: trailingIcon,
+                icon: trailing,
                 color: Colors.grey[400],
                 onPressed: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Jo7Screen2())),
@@ -81,10 +80,10 @@ class _Jo7ScreenState extends State<Jo7Screen1> {
             : null,
       );
 
-  ListTile _leadingTile(String title) => _tile(title, leadingIcon, null);
+  ListTile _leadingTile(String title) => _tile(title, leading: leadingIcon);
 
   ListTile _leadingAndTrailingTile(String title) =>
-      _tile(title, leadingIcon, trailingIcon);
+      _tile(title, leading: leadingIcon, trailing: null);
 
   Widget _selectMarketing() => Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +99,6 @@ class _Jo7ScreenState extends State<Jo7Screen1> {
         ],
       );
 } // class
-
 
 Widget _divider = Divider(
   color: Colors.grey[400],
@@ -119,6 +117,9 @@ Widget _button = MaterialButton(
   child: Text(
     '등록',
     style: TextStyle(
-        color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+      color: Colors.white,
+      fontSize: 15,
+      fontWeight: FontWeight.bold,
+    ),
   ),
 );

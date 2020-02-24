@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/screens/b/hi3_screen.dart';
 import 'package:flutter_study/screens/b/jo1_screen.dart';
 import 'package:flutter_study/screens/b/jo7_screen1.dart';
 
@@ -39,6 +40,18 @@ class BScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => Jo7Screen1()),
+                      );
+                    }),
+                MaterialButton(
+                    color: Colors.cyan,
+                    child: Text(
+                      '알람설정',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Hi3Screen()),
                       );
                     }),
               ],

@@ -10,8 +10,8 @@ class _Jo7Screen2State extends State<Jo7Screen2> {
   List<String> _locations = [
     '2019년 09월 05일 시행안',
     '2020년 09월 05일 시행안'
-  ]; // Option 2
-  String _selectedLocation = '2019년 09월 05일 시행안'; // Option 2
+  ];
+  String _selectedLocation = '2019년 09월 05일 시행안';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,6 @@ class _Jo7Screen2State extends State<Jo7Screen2> {
                   value: _selectedLocation,
                   icon: Icon(Icons.keyboard_arrow_down),
                   iconSize: 25,
-//                  iconDisabledColor: Colors.red,
                   elevation: 0,
                   isExpanded: true,
                   onChanged: (newValue) {
@@ -53,7 +52,6 @@ class _Jo7Screen2State extends State<Jo7Screen2> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(location),
-//                          Icon(Icons.keyboard_arrow_up, size: 25),
                         ],
                       ),
                       value: location,
@@ -81,23 +79,6 @@ class _Jo7Screen2State extends State<Jo7Screen2> {
     child: Text(
       '송아리당뇨 서비스이용약관',
       style: TextStyle(fontWeight: FontWeight.bold),
-    ),
-  );
-
-  Widget _dates = Container(
-    color: Colors.white,
-    child: ListTile(
-      title: Text(
-        '2019년 09월 05일 시행안',
-        style: TextStyle(
-          color: Colors.grey[400],
-        ),
-      ),
-      trailing: IconButton(
-        icon: true == true ? Icon(Icons.keyboard_arrow_down) : null,
-        /* TODO: true 부분 변경 필요*/
-        onPressed: null,
-      ),
     ),
   );
 
