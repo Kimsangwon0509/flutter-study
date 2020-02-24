@@ -22,10 +22,14 @@ class CScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
+                  margin: EdgeInsets.only(top: 20),
                   width: 200.0,
                   child: MaterialButton(
                     color: Colors.cyan,
-                    child: Text('비밀번호 찾기'),
+                    child: Text(
+                      '비밀번호 찾기',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -39,7 +43,8 @@ class CScreen extends StatelessWidget {
                   width: 200.0,
                   child: MaterialButton(
                     color: Colors.cyan,
-                    child: Text('프로필 화면'),
+                    child:
+                        Text('프로필 화면', style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -53,7 +58,7 @@ class CScreen extends StatelessWidget {
                   width: 200.0,
                   child: MaterialButton(
                     color: Colors.cyan,
-                    child: Text('팝업 화면'),
+                    child: Text('팝업 화면', style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.push(
                         context,
