@@ -13,19 +13,19 @@ class _Jo7ScreenState extends State<Jo7Screen1> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            '약관동의',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          '약관동의',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: Column(
+      ),
+      body: SafeArea(
+        child: Column(
           children: <Widget>[
             _acceptedAll(),
             _divider,

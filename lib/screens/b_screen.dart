@@ -7,12 +7,12 @@ class BScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('B Screen'),
-        ),
-        body: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('B Screen'),
+      ),
+      body: SafeArea(
+        child: Container(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
