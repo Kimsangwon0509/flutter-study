@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class Jo7Screen2 extends StatefulWidget {
@@ -42,7 +39,7 @@ class _Jo7Screen2State extends State<Jo7Screen2> {
                   value: _selectedLocation,
                   icon: Icon(Icons.keyboard_arrow_down),
                   iconSize: 25,
-                  iconDisabledColor: Colors.red,
+//                  iconDisabledColor: Colors.red,
                   elevation: 0,
                   isExpanded: true,
                   onChanged: (newValue) {

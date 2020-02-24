@@ -35,48 +35,46 @@ class Profile extends StatelessWidget {
           ],
         ),
         body: Container(
+          color: Colors.white,
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 0.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 15.0, left: 15),
-                  child: Text(
-                    '로그인해주세요',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, left: 15),
+                child: Text(
+                  '로그인해주세요',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 5.0, left: 15),
-                  child: Text(
-                    '회원가입하시고 다양한 서비스를 경험해보세요!',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.black.withOpacity(0.3)),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(top: 5.0, left: 15),
+                child: Text(
+                  '회원가입하시고 다양한 서비스를 경험해보세요!',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.black.withOpacity(0.3)),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 25.0),
               ),
-              FlatButton(
-                child: Text(
-                  '로그인/회원가입',
-                  style: TextStyle(fontSize: 17, color: Colors.white),
+              Center(
+                child: FlatButton(
+                  child: Text(
+                    '로그인/회원가입',
+                    style: TextStyle(fontSize: 17, color: Colors.white),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 130, vertical: 15),
+                  color: Colors.cyan,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen2()),
+                    );
+                  },
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 130, vertical: 15),
-                color: Colors.cyan,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen2()),
-                  );
-                },
               ),
               ListView(
                 shrinkWrap: true,
