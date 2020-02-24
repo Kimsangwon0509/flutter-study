@@ -117,7 +117,7 @@ class _DashScreenState extends State<DashScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
-                        'images/banner.png',
+                        'images/a/banner.png',
                         width: double.infinity,
                         height: 130.0,
                         fit: BoxFit.fill,
