@@ -59,7 +59,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                 decoration: BoxDecoration(
                   color: Color(0xff7c94b6),
                   image: DecorationImage(
-                    image: ExactAssetImage('images/login_background.jpg'),
+                    image: ExactAssetImage('images/a/login_background.jpg'),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -71,7 +71,7 @@ class _LoginScreen1State extends State<LoginScreen1>
                 decoration: BoxDecoration(
                   color: Color(0xff7c94b6),
                   image: DecorationImage(
-                    image: ExactAssetImage('images/login_background2.jpg'),
+                    image: ExactAssetImage('images/a/login_background2.jpg'),
                     fit: BoxFit.fill,
                   ),
                 ),
