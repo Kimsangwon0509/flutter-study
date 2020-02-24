@@ -1,19 +1,26 @@
 //프로필 화면
 import 'package:flutter/material.dart';
+import 'package:flutter_study/screens/c/find_pw.dart';
 
 class PopUp extends StatefulWidget {
   @override
   _PopUpState createState() => _PopUpState();
 }
 
-enum MyDialogAction { modify, yes }
+//enum MyDialogAction { modify, yes }
 
 class _PopUpState extends State<PopUp> {
-  String _text = '';
-
-  void _dialogResult(MyDialogAction value) {
+//  void _dialogResult(MyDialogAction value) {
+//    print('you selected $value');
+//    print(value.toString());
+//    if (value.toString() == 'MyDialogAction.yes') Navigator.pop(context);
+//  }
+  void _dialogResult(int value) {
     print('you selected $value');
-    Navigator.pop(context);
+    if (value == 2) Navigator.pop(context);
+    if (value == 1)
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => FindPw())); //임시 이동
   }
 
   void _showAlert() {
@@ -102,7 +109,7 @@ class _PopUpState extends State<PopUp> {
                     ],
                   ),
                   onPressed: () {
-                    _dialogResult(MyDialogAction.modify);
+                    _dialogResult(1);
                   },
                 ),
               ),
@@ -120,7 +127,7 @@ class _PopUpState extends State<PopUp> {
                   ),
                   color: Colors.cyan,
                   onPressed: () {
-                    _dialogResult(MyDialogAction.yes);
+                    _dialogResult(2);
                   },
                 ),
               ),
