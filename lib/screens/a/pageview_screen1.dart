@@ -12,26 +12,24 @@ class PageviewScreen1 extends StatelessWidget {
           icon: Icon(Icons.close),
         ),
       ),
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(),
-            ),
-            Container(
-              width: double.infinity,
-              height: 55.0,
-              child: FlatButton(
-                color: Colors.cyan,
-                child: Text(
-                  '사용법 보기',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {},
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(),
+          ),
+          Container(
+            width: double.infinity,
+            height: 60.0,
+            child: FlatButton(
+              color: Colors.cyan,
+              child: Text(
+                '사용법 보기',
+                style: TextStyle(color: Colors.white),
               ),
-            )
-          ],
-        ),
+              onPressed: () {},
+            ),
+          )
+        ],
       ),
     );
   }
