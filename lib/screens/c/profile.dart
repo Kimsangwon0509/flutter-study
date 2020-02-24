@@ -2,39 +2,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/a/login_screen2.dart';
 
-final List<String> entries = <String>['A', 'B', 'C'];
-final List<int> colorCodes = <int>[600, 500, 100];
-
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text(
-            ' ',
-            style: TextStyle(color: Colors.black),
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(' '),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.notifications, color: Colors.black),
+            tooltip: 'Hi!',
+            onPressed: () => {},
           ),
-          actions: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.notifications, color: Colors.black),
-              tooltip: 'Hi!',
-              onPressed: () => {},
+          new IconButton(
+            icon: new Icon(
+              Icons.settings,
+              color: Colors.black,
             ),
-            new IconButton(
-              icon: new Icon(
-                Icons.settings,
-                color: Colors.black,
-              ),
-              tooltip: 'Wow',
-              onPressed: () => {},
-            )
-          ],
-        ),
-        body: Container(
+            tooltip: 'Wow',
+            onPressed: () => {},
+          )
+        ],
+      ),
+      body: SafeArea(
+        child: Container(
           color: Colors.white,
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 0.0),
