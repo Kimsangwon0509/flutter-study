@@ -18,8 +18,17 @@ class PageviewScreen1 extends StatelessWidget {
             Expanded(
               child: Container(),
             ),
-            MaterialButton(
-              child: Text('사용법 보기'),
+            Container(
+              width: double.infinity,
+              height: 55.0,
+              child: FlatButton(
+                color: Colors.cyan,
+                child: Text(
+                  '사용법 보기',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {},
+              ),
             )
           ],
         ),
