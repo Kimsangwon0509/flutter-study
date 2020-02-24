@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 class LoginScreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text(
-            '로그인',
-            style: TextStyle(color: Colors.black),
-          ),
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          '로그인',
+          style: TextStyle(color: Colors.black),
         ),
-        body: Container(
+      ),
+      body: SafeArea(
+        child: Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(

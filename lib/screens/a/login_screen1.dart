@@ -48,10 +48,10 @@ class _LoginScreen1State extends State<LoginScreen1>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Center(
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      body: SafeArea(
+        child: Center(
           child: Stack(
             children: <Widget>[
               FadeTransition(

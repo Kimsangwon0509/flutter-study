@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/a/chart_screen1.dart';
+import 'package:flutter_study/screens/a/pageview_screen1.dart';
 import 'package:flutter_study/screens/a/webview_screen.dart';
 
 import 'a/chart_screen2.dart';
@@ -11,12 +12,12 @@ class AScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('A Screen'),
-        ),
-        body: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('A Screen'),
+      ),
+      body: SafeArea(
+        child: Container(
           child: Center(
             child: Column(
               children: <Widget>[
@@ -119,6 +120,26 @@ class AScreen extends StatelessWidget {
                     },
                     child: Text(
                       '대시화면',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200.0,
+                  child: FlatButton(
+                    color: Colors.cyan,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return PageviewScreen1();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '페이지뷰화면',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

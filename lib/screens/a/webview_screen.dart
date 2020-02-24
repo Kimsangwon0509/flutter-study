@@ -77,13 +77,13 @@ td {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-          title: Text('Webview Screen'),
-        ),
-        body: WebView(
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        title: Text('Webview Screen'),
+      ),
+      body: SafeArea(
+        child: WebView(
           javascriptMode: JavascriptMode.disabled,
           onWebViewCreated: (WebViewController webViewController) {
             webViewController.loadUrl(Uri.dataFromString(

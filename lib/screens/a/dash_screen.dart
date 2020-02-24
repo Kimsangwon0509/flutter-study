@@ -8,37 +8,37 @@ class DashScreen extends StatefulWidget {
 class _DashScreenState extends State<DashScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          backgroundColor: Color(0xff47a7f4),
-          title: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.opacity),
-                SizedBox(width: 10.0),
-                Text('디아콘당뇨'),
-              ],
-            ),
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff47a7f4),
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.opacity),
+              SizedBox(width: 10.0),
+              Text('디아콘당뇨'),
+            ],
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: new Icon(Icons.device_hub),
-              tooltip: 'Hi!',
-              onPressed: () => {},
-            ),
-            IconButton(
-              icon: new Icon(Icons.mic),
-              tooltip: '음성인식',
-              onPressed: () => {},
-            ),
-          ],
         ),
-        body: Column(
+        actions: <Widget>[
+          IconButton(
+            icon: new Icon(Icons.device_hub),
+            tooltip: 'Hi!',
+            onPressed: () => {},
+          ),
+          IconButton(
+            icon: new Icon(Icons.mic),
+            tooltip: '음성인식',
+            onPressed: () => {},
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(15.0),
