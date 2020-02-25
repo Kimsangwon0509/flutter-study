@@ -95,7 +95,7 @@ class _AlarmTileState extends State<AlarmTile> {
               child: Icon(
                 icon,
                 size: 35,
-                color: _isSwitchOn ? widget.color : widget._defaultColor,
+                color: _isSwitchOn ? widget.color : Colors.black54,
               ),
             ),
             Text(
