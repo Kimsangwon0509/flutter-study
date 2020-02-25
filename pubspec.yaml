@@ -20,6 +20,8 @@ dependencies:
   charts_flutter: ^0.8.1
   rflutter_alert: ^1.0.2
   page_indicator: ^0.3.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

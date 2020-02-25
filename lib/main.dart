@@ -5,6 +5,8 @@ import 'package:flutter_study/screens/b_screen.dart';
 import 'package:flutter_study/screens/c_screen.dart';
 import 'package:flutter_study/screens/main_screen.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() {
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
@@ -16,6 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Study',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('ko', 'KO'),
+      ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
