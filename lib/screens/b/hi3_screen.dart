@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_study/screens/b/hi5_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Hi3Screen extends StatelessWidget {
@@ -50,25 +51,29 @@ class _AlarmTileState extends State<AlarmTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: _isSwitchOn ? null :  widget._defaultColor,
+      color: _isSwitchOn ? null : widget._defaultColor,
       child: ListTile(
         leading: iconWithText(title: widget.title, icon: widget.icon),
-        title: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: Row(
-            /* Note: baseline 사용 방법 */
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.ideographic,
-            children: <Widget>[
-              Text(
-                widget.time,
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.w400,
+        title: GestureDetector(
+          onTap: () => showModalBottomSheet(
+              context: context, builder: (context) => Hi5Screen()),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Row(
+              /* Note: baseline 사용 방법 */
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.ideographic,
+              children: <Widget>[
+                Text(
+                  widget.time,
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              Text(widget._ampm),
-            ],
+                Text(widget._ampm),
+              ],
+            ),
           ),
         ),
         trailing: CupertinoSwitch(
