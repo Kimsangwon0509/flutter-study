@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -7,7 +6,9 @@ import 'package:speech_to_text/speech_recognition_error.dart';
 
 const String kListen = '듣고 있어요.';
 const String kRepeat = '다시 말해주세요.';
-const String kNone = '다음과 같이 시간대와 혈당값을 말해주세요.';
+const String kNone = '''다음과 같이 
+시간대와 혈당값을
+말해주세요.''';
 
 class Hm3Screen extends StatefulWidget {
   @override
@@ -16,18 +17,17 @@ class Hm3Screen extends StatefulWidget {
 
 class _Hm3ScreenState extends State<Hm3Screen> {
   String _message = kRepeat;
-  bool _isListening = false;
   List _bloodSugars = ['아침식전 90', '점심식후 120', '취침전 105'];
 
   void toggleListeningEvent() {
     _isListening ? stopListening() : startListening();
   }
 
-/*----------------------- start speech_screen setting ------------------------*/
+/*-------------------- start speech_screen setting --------------------*/
   bool _hasSpeech = false;
-  String lastWords = '';
+  bool _isListening = false;
+  String lastWords = ''; // 지금은 사용 안하지만 추후 값 등록 페이지에서 필요
   String lastError = '';
-  String lastStatus = '';
   final SpeechToText speech = SpeechToText();
 
   @override
@@ -35,7 +35,6 @@ class _Hm3ScreenState extends State<Hm3Screen> {
     super.initState();
     initSpeechState();
     initListening();
-    _message = searchMessage();
   }
 
   Future<void> initSpeechState() async {
@@ -55,28 +54,18 @@ class _Hm3ScreenState extends State<Hm3Screen> {
   void startListening() {
     lastWords = '';
     lastError = '';
-    speech.listen(onResult: resultListener, listenFor: Duration(seconds: 5), localeId: 'ko');
-    setState(() {
-      _isListening = true;
-      _message = searchMessage();
-    });
+    speech.listen(
+        onResult: resultListener,
+        listenFor: Duration(seconds: 5),
+        localeId: 'ko');
   }
 
   void stopListening() {
     speech.stop();
-    setState(() {
-      _isListening = false;
-      _message = searchMessage();
-    });
   }
 
   void cancelListening() {
     speech.cancel();
-    setState(() {
-      _isListening = false;
-      _hasSpeech = false;
-      _message = searchMessage();
-    });
   }
 
   void resultListener(SpeechRecognitionResult result) {
@@ -95,12 +84,27 @@ class _Hm3ScreenState extends State<Hm3Screen> {
   }
 
   void statusListener(String status) {
+    bool _listening;
+    switch (status) {
+      case 'notListening':
+        {
+          _listening = false;
+        }
+        break;
+      case 'listening':
+        {
+          _listening = true;
+        }
+        break;
+    }
     setState(() {
-      lastStatus = '$status';
+      _isListening = _listening;
+      _message = searchMessage();
     });
   }
 
-/*----------------------- end speech_screen setting ------------------------*/
+/*-------------------- end speech_screen setting --------------------*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +133,6 @@ class _Hm3ScreenState extends State<Hm3Screen> {
           children: <Widget>[
             SizedBox(height: 50),
             _createMessage(),
-            SizedBox(height: 70),
             ..._createBloodSugarTexts(), /* NOTE: ...연산자를 사용하여 배열에 추가함 */
           ],
         ),
@@ -139,17 +142,19 @@ class _Hm3ScreenState extends State<Hm3Screen> {
     );
   }
 
-  Widget _createMessage() =>
-      Text(
-        _message,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+  /* NOTE: 메세지 라인수에 관계 없이 항상 일정한 높이를 갖기 위해 SizedBox로 감싸서 해결 */
+  Widget _createMessage() => SizedBox(
+        height: 110,
+        child: Text(
+          _message,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       );
 
-  Widget _createMicButton() =>
-      Container(
+  Widget _createMicButton() => Container(
         width: 70,
         height: 70,
         margin: EdgeInsets.only(bottom: 70),
@@ -159,10 +164,10 @@ class _Hm3ScreenState extends State<Hm3Screen> {
           },
           child: _hasSpeech
               ? Icon(
-            _isListening ? Icons.more_horiz : Icons.mic,
-            size: 50,
-            color: Colors.white,
-          )
+                  _isListening ? Icons.more_horiz : Icons.mic,
+                  size: 50,
+                  color: Colors.white,
+                )
               : null,
           backgroundColor: Colors.pinkAccent,
           elevation: 0,
@@ -182,16 +187,15 @@ class _Hm3ScreenState extends State<Hm3Screen> {
 
   List<Text> _createBloodSugarTexts() {
     return _bloodSugars
-        .map((bs) =>
-        Text(
-          '" $bs "',
-          style: TextStyle(
-            color: Colors.black38,
-            fontSize: 18,
-            wordSpacing: 5,
-            height: 2,
-          ),
-        ))
+        .map((bs) => Text(
+              '" $bs "',
+              style: TextStyle(
+                color: Colors.black38,
+                fontSize: 18,
+                wordSpacing: 5,
+                height: 2,
+              ),
+            ))
         .toList();
   }
 }
