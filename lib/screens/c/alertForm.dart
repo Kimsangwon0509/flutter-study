@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/screens/c/modify_BsGoal.dart';
 
 class PopForm extends StatefulWidget {
   @override
@@ -75,7 +76,7 @@ class PopFormState extends State<PopForm> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 16),
               ],
             ),
           ),
@@ -87,6 +88,7 @@ class PopFormState extends State<PopForm> {
                 style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
             ),
+            SizedBox(height: 10),
             Container(
               width: 300.0,
               height: 50,
@@ -102,7 +104,12 @@ class PopFormState extends State<PopForm> {
                     Text("목표 혈당 범위 수정"),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ModifyBS()),
+                  );
+                },
               ),
             ),
             SizedBox(height: 15),
