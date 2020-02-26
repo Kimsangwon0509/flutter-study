@@ -28,18 +28,13 @@ class Hi3Screen extends StatelessWidget {
 }
 
 class AlarmTile extends StatefulWidget {
-  final String title;
-  final String time;
   final IconData icon;
   final Color color;
-  final String _ampm;
+  final String title;
+  final String time;
   final Color _defaultColor = Colors.grey[100];
 
-  /* NOTE: 콜론 사용자 사용
-  * this.icon 처럼 사용하려면 맨 앞에만 들어와지는듯
-  * */
-  AlarmTile(this.icon, this.color, {@required this.title, @required this.time})
-      : _ampm = int.parse(time.split(':')[0]) < 12 ? 'AM' : 'PM';
+  AlarmTile(this.icon, this.color, {@required this.title, @required this.time});
 
   @override
   _AlarmTileState createState() => _AlarmTileState();
@@ -47,6 +42,19 @@ class AlarmTile extends StatefulWidget {
 
 class _AlarmTileState extends State<AlarmTile> {
   bool _isSwitchOn = false;
+  String _selectedTime;
+
+  void displaySwitchAndAlarm(bool newValue) {
+    setState(() {
+      _isSwitchOn = newValue;
+      alarmToast(light: _isSwitchOn, title: widget.title);
+    });
+  }
+  void displaySelectedTime(String newValue) {
+    setState(() {
+      _selectedTime = newValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +63,7 @@ class _AlarmTileState extends State<AlarmTile> {
       child: ListTile(
         leading: iconWithText(title: widget.title, icon: widget.icon),
         title: GestureDetector(
-          onTap: () => showModalBottomSheet(
-              context: context, builder: (context) => Hi5Screen()),
+          onTap: () => _showModalAndDisplaySelectedTime(context),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Row(
@@ -65,13 +72,13 @@ class _AlarmTileState extends State<AlarmTile> {
               textBaseline: TextBaseline.ideographic,
               children: <Widget>[
                 Text(
-                  widget.time,
+                  _selectedTime ?? widget.time,
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                Text(widget._ampm),
+                Text(int.parse((_selectedTime ?? widget.time).split(':')[0]) < 12 ? 'AM' : 'PM'),
               ],
             ),
           ),
@@ -79,15 +86,22 @@ class _AlarmTileState extends State<AlarmTile> {
         trailing: CupertinoSwitch(
           activeColor: Colors.cyan,
           value: _isSwitchOn,
-          onChanged: (bool value) {
-            setState(() {
-              _isSwitchOn = value;
-              alarmToast(light: _isSwitchOn, title: widget.title);
-            });
+          onChanged: (bool isLight) {
+            displaySwitchAndAlarm(isLight);
           },
         ),
       ),
     );
+  }
+
+  _showModalAndDisplaySelectedTime(BuildContext context) async {
+    final DateTime result = await showModalBottomSheet(
+        context: context, builder: (context) => Hi5Screen());
+    if(result != null) {
+      String newValue = '${result.hour.toString().padLeft(2, '0')}'
+          ':${result.minute.toString().padLeft(2, '0')}';
+      displaySelectedTime(newValue);
+    }
   }
 
   Widget iconWithText({@required String title, @required IconData icon}) =>
@@ -128,64 +142,65 @@ class _AlarmTileState extends State<AlarmTile> {
   }
 }
 
-Widget listViewUseDivideTiles(var context) => ListView(
+Widget listViewUseDivideTiles(var context) =>
+    ListView(
         children: ListTile.divideTiles(
-      context: context,
-      color: Colors.grey[500],
-      tiles: [
-        AlarmTile(
-          Icons.brightness_4,
-          Colors.blue,
-          title: '기상직후',
-          time: '07:00',
-        ),
-        AlarmTile(
-          Icons.brightness_7,
-          Colors.red,
-          title: '아침',
-          time: '08:00',
-        ),
-        AlarmTile(
-          Icons.brightness_5,
-          Colors.amber,
-          title: '점심',
-          time: '12:00',
-        ),
-        AlarmTile(
-          Icons.brightness_1,
-          Colors.indigo[500],
-          title: '저녁',
-          time: '18:00',
-        ),
-        AlarmTile(
-          Icons.brightness_3,
-          Colors.deepPurpleAccent,
-          title: '취침전',
-          time: '20:00',
-        ),
-        AlarmTile(
-          Icons.brightness_3,
-          Colors.deepPurpleAccent,
-          title: '취침전',
-          time: '21:00',
-        ),
-        AlarmTile(
-          Icons.brightness_3,
-          Colors.deepPurpleAccent,
-          title: '취침전',
-          time: '22:00',
-        ),
-        AlarmTile(
-          Icons.brightness_3,
-          Colors.deepPurpleAccent,
-          title: '취침전',
-          time: '23:00',
-        ),
-        AlarmTile(
-          Icons.brightness_3,
-          Colors.deepPurpleAccent,
-          title: '취침전',
-          time: '00:00',
-        ),
-      ],
-    ).toList());
+          context: context,
+          color: Colors.grey[500],
+          tiles: [
+            AlarmTile(
+              Icons.brightness_4,
+              Colors.blue,
+              title: '기상직후',
+              time: '07:00',
+            ),
+            AlarmTile(
+              Icons.brightness_7,
+              Colors.red,
+              title: '아침',
+              time: '08:00',
+            ),
+            AlarmTile(
+              Icons.brightness_5,
+              Colors.amber,
+              title: '점심',
+              time: '12:00',
+            ),
+            AlarmTile(
+              Icons.brightness_1,
+              Colors.indigo[500],
+              title: '저녁',
+              time: '18:00',
+            ),
+            AlarmTile(
+              Icons.brightness_3,
+              Colors.deepPurpleAccent,
+              title: '취침전',
+              time: '20:00',
+            ),
+            AlarmTile(
+              Icons.brightness_3,
+              Colors.deepPurpleAccent,
+              title: '취침전',
+              time: '21:00',
+            ),
+            AlarmTile(
+              Icons.brightness_3,
+              Colors.deepPurpleAccent,
+              title: '취침전',
+              time: '22:00',
+            ),
+            AlarmTile(
+              Icons.brightness_3,
+              Colors.deepPurpleAccent,
+              title: '취침전',
+              time: '23:00',
+            ),
+            AlarmTile(
+              Icons.brightness_3,
+              Colors.deepPurpleAccent,
+              title: '취침전',
+              time: '00:00',
+            ),
+          ],
+        ).toList());

@@ -9,6 +9,12 @@ class Hi5Screen extends StatefulWidget {
 class _Hi5ScreenState extends State<Hi5Screen> {
   DateTime _selectedTime = DateTime.now();
 
+  void setSelectedTime(value) {
+    setState(() {
+      _selectedTime = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -16,37 +22,42 @@ class _Hi5ScreenState extends State<Hi5Screen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          checkButton(context),
-          timePicker(),
+          checkButtonSection(context),
+          timePickerSection(),
         ],
       ),
     );
   }
 
-  Widget checkButton(context) => Container(
-    color: Colors.white,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        FlatButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(
-            '확인',
-            style: TextStyle(color: Colors.cyan),
-          ),
+  Widget checkButtonSection(context) =>
+      Container(
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context, _selectedTime);
+              },
+              child: Text(
+                '확인',
+                style: TextStyle(color: Colors.cyan),
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 
-  Widget timePicker() => Container(
-    height: 250,
-    child: CupertinoDatePicker(
-      mode: CupertinoDatePickerMode.time,
-      onDateTimeChanged: (DateTime time) {print(_selectedTime.toString())},
-      use24hFormat: false,
-      initialDateTime: _selectedTime,
-    ),
-  );
+  Widget timePickerSection() =>
+      Container(
+        height: 250,
+        child: CupertinoDatePicker(
+          mode: CupertinoDatePickerMode.time,
+          onDateTimeChanged: (DateTime time) {
+            _selectedTime = time;
+          },
+          initialDateTime: _selectedTime,
+        ),
+      );
 }
 
