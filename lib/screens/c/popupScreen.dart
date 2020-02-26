@@ -1,6 +1,7 @@
 //프로필 화면
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/c/find_pw.dart';
+import 'package:flutter_study/screens/c/alertForm.dart';
 
 class PopUp extends StatefulWidget {
   @override
