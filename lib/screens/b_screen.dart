@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/b/hi3_screen.dart';
+import 'package:flutter_study/screens/b/hm3_screen.dart';
 import 'package:flutter_study/screens/b/jo1_screen.dart';
 import 'package:flutter_study/screens/b/jo7_screen1.dart';
+import 'package:flutter_study/screens/b/speech_screen.dart';
 
 class BScreen extends StatelessWidget {
   static const String id = 'b_screen';
@@ -18,42 +20,11 @@ class BScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MaterialButton(
-                    color: Colors.cyan,
-                    child: Text(
-                      '회원가입',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Jo1Screen()),
-                      );
-                    }),
-                MaterialButton(
-                    color: Colors.cyan,
-                    child: Text(
-                      '약관동의',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Jo7Screen1()),
-                      );
-                    }),
-                MaterialButton(
-                    color: Colors.cyan,
-                    child: Text(
-                      '알람설정',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Hi3Screen()),
-                      );
-                    }),
+                _pageRouteButton(context, title: '회원가입', widget: Jo1Screen()),
+                _pageRouteButton(context, title: '약관동의', widget: Jo7Screen1()),
+                _pageRouteButton(context, title: '알람설정', widget: Hi3Screen()),
+                _pageRouteButton(context, title: '음성인식', widget: Hm3Screen()),
+                _pageRouteButton(context, title: '테스트', widget: MyApp()),
               ],
             ),
           ),
@@ -61,4 +32,19 @@ class BScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _pageRouteButton(BuildContext context,
+          {@required String title, Widget widget}) =>
+      MaterialButton(
+          color: Colors.cyan,
+          child: Text(
+            title,
+            style: TextStyle(color: Colors.white),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => widget),
+            );
+          });
 }

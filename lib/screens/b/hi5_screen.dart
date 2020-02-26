@@ -9,12 +9,6 @@ class Hi5Screen extends StatefulWidget {
 class _Hi5ScreenState extends State<Hi5Screen> {
   DateTime _selectedTime = DateTime.now();
 
-  void setSelectedTime(value) {
-    setState(() {
-      _selectedTime = value;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -22,14 +16,14 @@ class _Hi5ScreenState extends State<Hi5Screen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          checkButtonSection(context),
-          timePickerSection(),
+          _checkButtonSection(context),
+          _timePickerSection(),
         ],
       ),
     );
   }
 
-  Widget checkButtonSection(context) =>
+  Widget _checkButtonSection(context) =>
       Container(
         color: Colors.white,
         child: Row(
@@ -48,7 +42,7 @@ class _Hi5ScreenState extends State<Hi5Screen> {
         ),
       );
 
-  Widget timePickerSection() =>
+  Widget _timePickerSection() =>
       Container(
         height: 250,
         child: CupertinoDatePicker(
