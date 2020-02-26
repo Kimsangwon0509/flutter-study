@@ -88,8 +88,8 @@ class CScreen extends StatelessWidget {
                   width: 200.0,
                   child: MaterialButton(
                     color: Colors.cyan,
-                    child: Text('다이얼로그 테스트',
-                        style: TextStyle(color: Colors.white)),
+                    child:
+                        Text('혈당 목표 수정', style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.push(
                         context,
