@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/b/hi3_screen.dart';
 import 'package:flutter_study/screens/b/hm3_screen.dart';
+import 'package:flutter_study/screens/b/http_screen.dart';
 import 'package:flutter_study/screens/b/jo1_screen.dart';
 import 'package:flutter_study/screens/b/jo7_screen1.dart';
 import 'package:flutter_study/screens/b/speech_screen.dart';
@@ -24,7 +25,8 @@ class BScreen extends StatelessWidget {
                 _pageRouteButton(context, title: '약관동의', widget: Jo7Screen1()),
                 _pageRouteButton(context, title: '알람설정', widget: Hi3Screen()),
                 _pageRouteButton(context, title: '음성인식', widget: Hm3Screen()),
-                _pageRouteButton(context, title: '테스트', widget: MyApp()),
+                _pageRouteButton(context, title: 'STT API test', widget: MyApp()),
+                _pageRouteButton(context, title: 'HTTP test', widget: HttpScreen()),
               ],
             ),
           ),
@@ -37,6 +39,7 @@ class BScreen extends StatelessWidget {
           {@required String title, Widget widget}) =>
       MaterialButton(
           color: Colors.cyan,
+          minWidth: 150,
           child: Text(
             title,
             style: TextStyle(color: Colors.white),
