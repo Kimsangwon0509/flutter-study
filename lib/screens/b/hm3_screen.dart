@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -7,6 +6,9 @@ import 'package:speech_to_text/speech_recognition_error.dart';
 
 const String kListen = '듣고 있어요.';
 const String kRepeat = '다시 말해주세요.';
+const String kNone = '''다음과 같이 
+시간대와 혈당값을
+말해주세요.''';
 
 class Hm3Screen extends StatefulWidget {
   @override
@@ -14,74 +16,95 @@ class Hm3Screen extends StatefulWidget {
 }
 
 class _Hm3ScreenState extends State<Hm3Screen> {
-  String _state = kRepeat;
-  bool _isListening = false;
+  String _message = kRepeat;
   List _bloodSugars = ['아침식전 90', '점심식후 120', '취침전 105'];
 
-/*----------------------- start speech_screen setting ------------------------*/
+  void toggleListeningEvent() {
+    _isListening ? stopListening() : startListening();
+  }
+
+/*-------------------- start speech_screen setting --------------------*/
   bool _hasSpeech = false;
-  String lastWords = "";
-  String lastError = "";
-  String lastStatus = "";
+  bool _isListening = false;
+  String lastWords = ''; // 지금은 사용 안하지만 추후 값 등록 페이지에서 필요
+  String lastError = '';
   final SpeechToText speech = SpeechToText();
 
   @override
   void initState() {
     super.initState();
     initSpeechState();
+    initListening();
   }
 
   Future<void> initSpeechState() async {
     bool hasSpeech = await speech.initialize(
         onError: errorListener, onStatus: statusListener);
-
     if (!mounted) return;
     setState(() {
       _hasSpeech = hasSpeech;
     });
+    initListening();
+  }
+
+  void initListening() {
+    _hasSpeech ? startListening() : () {};
   }
 
   void startListening() {
-    lastWords = "";
-    lastError = "";
-    speech.listen(onResult: resultListener );
-    setState(() {
-      //@TODO
-    });
+    lastWords = '';
+    lastError = '';
+    speech.listen(
+        onResult: resultListener,
+        listenFor: Duration(seconds: 5),
+        localeId: 'ko');
   }
 
   void stopListening() {
-    speech.stop( );
-    setState(() {
-      //@TODO
-    });
+    speech.stop();
   }
 
   void cancelListening() {
-    speech.cancel( );
-    setState(() {
-      //@TODO
-    });
+    speech.cancel();
   }
 
   void resultListener(SpeechRecognitionResult result) {
-    setState(() {
-      lastWords = "${result.recognizedWords} - ${result.finalResult}";
-    });
+    if (result.finalResult) {
+      setState(() {
+        lastWords = '${result.recognizedWords}';
+        _bloodSugars.add(lastWords);
+      });
+    }
   }
 
   void errorListener(SpeechRecognitionError error) {
     setState(() {
-      lastError = "${error.errorMsg} - ${error.permanent}";
+      lastError = '${error.errorMsg} - ${error.permanent}';
     });
   }
 
   void statusListener(String status) {
+    bool _listening;
+    switch (status) {
+      case 'notListening':
+        {
+          _listening = false;
+        }
+        break;
+      case 'listening':
+        {
+          _listening = true;
+        }
+        break;
+    }
     setState(() {
-      lastStatus = "$status";
+      _isListening = _listening;
+      _message = searchMessage();
     });
   }
-/*----------------------- end speech_screen setting ------------------------*/
+
+/*-------------------- end speech_screen setting --------------------*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +120,7 @@ class _Hm3ScreenState extends State<Hm3Screen> {
               color: Colors.black54,
             ),
             onPressed: () {
+              cancelListening();
               Navigator.pop(context);
             },
           )
@@ -108,16 +132,8 @@ class _Hm3ScreenState extends State<Hm3Screen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 50),
-            Text(
-              _state,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 90),
-            /* NOTE: ...연산자를 사용하여 배열에 추가함 */
-            ..._createBloodSugarTexts(),
+            _createMessage(),
+            ..._createBloodSugarTexts(), /* NOTE: ...연산자를 사용하여 배열에 추가함 */
           ],
         ),
       ),
@@ -126,24 +142,48 @@ class _Hm3ScreenState extends State<Hm3Screen> {
     );
   }
 
+  /* NOTE: 메세지 라인수에 관계 없이 항상 일정한 높이를 갖기 위해 SizedBox로 감싸서 해결 */
+  Widget _createMessage() => SizedBox(
+        height: 110,
+        child: Text(
+          _message,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+
   Widget _createMicButton() => Container(
         width: 70,
         height: 70,
         margin: EdgeInsets.only(bottom: 70),
         child: FloatingActionButton(
           onPressed: () {
-//            switchListeningState();
+            toggleListeningEvent();
           },
-          child: Icon(
-            _isListening ? Icons.more_horiz : Icons.mic,
-            size: 50,
-            color: Colors.white,
-          ),
+          child: _hasSpeech
+              ? Icon(
+                  _isListening ? Icons.more_horiz : Icons.mic,
+                  size: 50,
+                  color: Colors.white,
+                )
+              : null,
           backgroundColor: Colors.pinkAccent,
           elevation: 0,
           highlightElevation: 0,
         ),
       );
+
+  String searchMessage() {
+    if (_hasSpeech && _isListening) {
+      return kListen;
+    } else if (_hasSpeech) {
+      return kRepeat;
+    } else {
+      return kNone;
+    }
+  }
 
   List<Text> _createBloodSugarTexts() {
     return _bloodSugars
