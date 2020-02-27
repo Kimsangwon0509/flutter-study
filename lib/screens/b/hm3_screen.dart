@@ -177,10 +177,13 @@ class _Hm3ScreenState extends State<Hm3Screen> {
 
   String searchMessage() {
     if (_hasSpeech && _isListening) {
+      print('listen');
       return kListen;
     } else if (_hasSpeech) {
+      print('repeat');
       return kRepeat;
     } else {
+      print('none');
       return kNone;
     }
   }
