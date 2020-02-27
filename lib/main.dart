@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: [
         const Locale('en', 'US'),
-        const Locale('ko', 'KO'),
+        const Locale('ko', 'KR'),
       ],
-      locale: Locale('ko', 'KO'),
+      locale: Locale('ko', 'KR'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
