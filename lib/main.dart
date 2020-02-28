@@ -20,12 +20,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Study',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('ko', 'KO'),
       ],
+      locale: Locale('ko', 'KO'),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
