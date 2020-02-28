@@ -56,16 +56,16 @@ class FindPw extends StatelessWidget {
                 Text('성별'),
                 Row(
                   children: <Widget>[
-                    Radio(
-                      value: 1,
-                      activeColor: Colors.lightBlue,
-                    ),
-                    Text('여'),
-                    Radio(
-                      value: 2,
-                      activeColor: Colors.lightBlue,
-                    ),
-                    Text('남'),
+//                    Radio(
+//                      value: 1,
+//                      activeColor: Colors.lightBlue,
+//                    ),
+//                    Text('여'),
+//                    Radio(
+//                      value: 2,
+//                      activeColor: Colors.lightBlue,
+//                    ),
+//                    Text('남'),
                   ],
                 ),
                 SizedBox(

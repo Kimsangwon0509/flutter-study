@@ -4,6 +4,7 @@ import 'package:flutter_study/screens/c/profile.dart';
 import 'package:flutter_study/screens/c/popupScreen.dart';
 import 'package:flutter_study/screens/c/calender_screen.dart';
 import 'package:flutter_study/screens/c/alertbridge.dart';
+import 'package:flutter_study/screens/c/camera_test.dart';
 
 class CScreen extends StatelessWidget {
   static const String id = 'c_screen';
@@ -94,6 +95,21 @@ class CScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ABridge()),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                Container(
+                  width: 200.0,
+                  child: MaterialButton(
+                    color: Colors.cyan,
+                    child:
+                        Text('카메라 테스트', style: TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyCamScreen()),
                       );
                     },
                   ),
