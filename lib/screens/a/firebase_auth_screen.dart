@@ -13,7 +13,7 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
   bool supportsAppleSignIn = false;
   String _userID;
   String _userEmail;
-  bool _success;
+  bool _success = false;
 
   Future<bool> isAvailableAppleSignIn() async {
     bool supportsAppleSignIn = await AppleSignIn.isAvailable();
@@ -37,36 +37,49 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
         title: Text('Firebase Auth'),
         leading: CloseButton(),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('UserId : $_userID'),
-            Text('UserEmail : $_userEmail'),
-            Text('Login Success : $_success'),
-            SizedBox(
-              height: 50,
-            ),
-            SizedBox(
-              width: 300,
-              child: RaisedButton(
-                onPressed: () {
-                  _signInWithGoogle();
-                },
-                child: Text('Google Login'),
-              ),
-            ),
-            if (supportsAppleSignIn)
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('UserId : $_userID'),
+              Text('UserEmail : $_userEmail'),
+              Text('Login Success : $_success'),
               SizedBox(
-                width: 300,
-                child: RaisedButton(
-                  onPressed: () {
-                    _signInWithApple();
-                  },
-                  child: Text('Apple Login'),
-                ),
+                height: 50,
               ),
-          ],
+              if (!_success) // 로그아웃 상태일 때
+                SizedBox(
+                  width: 300,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _signInWithGoogle();
+                    },
+                    child: Text('Google Login'),
+                  ),
+                ),
+              if (_success) // 로그인 상태일 때
+                SizedBox(
+                  width: 300,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _signOutWithGoogle();
+                    },
+                    child: Text('Google Logout'),
+                  ),
+                ),
+              if (supportsAppleSignIn) // 애플 로그인이 지원될 때
+                SizedBox(
+                  width: 300,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _signInWithApple();
+                    },
+                    child: Text('Apple Login'),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -87,17 +100,35 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    final FirebaseUser user =
-        (await _auth.signInWithCredential(credential)).user;
+    await _auth.signInWithCredential(credential);
 
     final FirebaseUser currentUser = await _auth.currentUser();
     setState(() {
-      if (user != null) {
+      if (currentUser != null) {
         _success = true;
-        _userID = user.uid;
-        _userEmail = user.email;
+        _userID = currentUser.uid;
+        _userEmail = currentUser.email;
       } else {
         _success = false;
+        _userID = null;
+        _userEmail = null;
+      }
+    });
+  }
+
+  void _signOutWithGoogle() async {
+    print('_signOutWithGoogle');
+    _auth.signOut();
+    final FirebaseUser currentUser = await _auth.currentUser();
+    setState(() {
+      if (currentUser != null) {
+        _success = true;
+        _userID = currentUser.uid;
+        _userEmail = currentUser.email;
+      } else {
+        _success = false;
+        _userID = null;
+        _userEmail = null;
       }
     });
   }

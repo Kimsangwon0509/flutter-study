@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/a/chart_screen1.dart';
 import 'package:flutter_study/screens/a/firebase_auth_screen.dart';
+import 'package:flutter_study/screens/a/firebase_message_screen.dart';
 import 'package:flutter_study/screens/a/pageview_screen1.dart';
+import 'package:flutter_study/screens/a/sliver_screen.dart';
 import 'package:flutter_study/screens/a/webview_screen.dart';
 
 import 'a/chart_screen2.dart';
@@ -161,6 +163,46 @@ class AScreen extends StatelessWidget {
                     },
                     child: Text(
                       'Firebase인증',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200.0,
+                  child: FlatButton(
+                    color: Colors.cyan,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FirebaseMessageScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Firebase메시징',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200.0,
+                  child: FlatButton(
+                    color: Colors.cyan,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SliverScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Sliver화면',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
