@@ -18,6 +18,7 @@ class _FirebaseMessageScreenState extends State<FirebaseMessageScreen> {
   TextEditingController _textEditingControllerBody = TextEditingController();
   @override
   void initState() {
+    super.initState();
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -44,6 +45,13 @@ class _FirebaseMessageScreenState extends State<FirebaseMessageScreen> {
         print("onResume: $message");
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _textEditingControllerTitle.dispose();
+    _textEditingControllerBody.dispose();
+    super.dispose();
   }
 
   void sendMessage() async {

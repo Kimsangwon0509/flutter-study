@@ -6,11 +6,18 @@ import 'package:flutter_study/screens/c_screen.dart';
 import 'package:flutter_study/screens/main_screen.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_study/session_item.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SessionItem(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
