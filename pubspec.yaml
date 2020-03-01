@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_core: ^0.4.3+3
   firebase_auth: ^0.15.4
+  google_sign_in: ^4.1.4
   apple_sign_in: ^0.1.0
   cloud_firestore: ^0.13.2+1
   modal_progress_hud: ^0.1.3

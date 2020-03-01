@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/a/chart_screen1.dart';
+import 'package:flutter_study/screens/a/firebase_auth_screen.dart';
 import 'package:flutter_study/screens/a/pageview_screen1.dart';
 import 'package:flutter_study/screens/a/webview_screen.dart';
 
@@ -140,6 +141,26 @@ class AScreen extends StatelessWidget {
                     },
                     child: Text(
                       '페이지뷰화면',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 200.0,
+                  child: FlatButton(
+                    color: Colors.cyan,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FirebaseAuthScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Firebase인증',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
