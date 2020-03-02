@@ -58,16 +58,6 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                     child: Text('Google Login'),
                   ),
                 ),
-              if (_success) // 로그인 상태일 때
-                SizedBox(
-                  width: 300,
-                  child: RaisedButton(
-                    onPressed: () {
-                      _signOutWithGoogle();
-                    },
-                    child: Text('Google Logout'),
-                  ),
-                ),
               if (supportsAppleSignIn) // 애플 로그인이 지원될 때
                 SizedBox(
                   width: 300,
@@ -76,6 +66,16 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                       _signInWithApple();
                     },
                     child: Text('Apple Login'),
+                  ),
+                ),
+              if (_success) // 로그인 상태일 때
+                SizedBox(
+                  width: 300,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _signOutWithGoogle();
+                    },
+                    child: Text('Logout'),
                   ),
                 ),
             ],
