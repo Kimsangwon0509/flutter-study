@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/screens/c/flutter_calendar_carousel_screen.dart';
+import 'package:flutter_study/screens/c/table_calendear_screen.dart';
 
 class Calender extends StatefulWidget {
   static const String id = 'd_screen';
@@ -77,6 +79,22 @@ class _CalenderState extends State<Calender> {
                   )
                 ],
               ),
+              RaisedButton(
+                child: Text('TableCalendar'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TableCalender()));
+                },
+              ),
+              RaisedButton(
+                child: Text('CarouselScreen'),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CarouselScreen()));
+                },
+              )
             ],
           ),
         ),
