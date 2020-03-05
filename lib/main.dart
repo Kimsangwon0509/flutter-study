@@ -6,11 +6,28 @@ import 'package:flutter_study/screens/c_screen.dart';
 import 'package:flutter_study/screens/main_screen.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_study/session_item.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SessionItem(),
+      child: MyApp(),
+    ),
+  );
+}
+
+Widget buildError(BuildContext context, FlutterErrorDetails error) {
+  return Scaffold(
+      body: Center(
+    child: Text(
+      "Error appeared.",
+      style: Theme.of(context).textTheme.title,
+    ),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,6 +50,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: MainScreen.id,
+      builder: (BuildContext context, Widget widget) {
+        ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+          return buildError(context, errorDetails);
+        };
+
+        return widget;
+      },
       routes: {
         MainScreen.id: (context) => MainScreen(),
         AScreen.id: (context) => AScreen(),

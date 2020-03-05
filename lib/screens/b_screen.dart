@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/screens/b/apple_login.dart';
+import 'package:flutter_study/screens/b/calendar_strip_screen.dart';
+import 'package:flutter_study/screens/b/flutter_clean_calendar_screen.dart';
 import 'package:flutter_study/screens/b/hi3_screen.dart';
 import 'package:flutter_study/screens/b/hm3_screen.dart';
 import 'package:flutter_study/screens/b/http_screen.dart';
@@ -25,8 +28,20 @@ class BScreen extends StatelessWidget {
                 _pageRouteButton(context, title: '약관동의', widget: Jo7Screen1()),
                 _pageRouteButton(context, title: '알람설정', widget: Hi3Screen()),
                 _pageRouteButton(context, title: '음성인식', widget: Hm3Screen()),
-                _pageRouteButton(context, title: 'STT API test', widget: MyApp()),
-                _pageRouteButton(context, title: 'HTTP test', widget: HttpScreen()),
+                Divider(),
+                _pageRouteButton(context,
+                    title: 'STT API test', widget: MyApp()),
+                _pageRouteButton(context,
+                    title: 'HTTP test', widget: HttpScreen()),
+                Divider(),
+                _pageRouteButton(context,
+                    title: 'apple login', widget: AppleLogin()),
+                Divider(),
+                _pageRouteButton(context,
+                    title: 'flutter_clean_calendar',
+                    widget: FlutterCleanCalendarScreen()),
+                _pageRouteButton(context,
+                    title: 'calendar_strip', widget: CalendarStripScreen()),
               ],
             ),
           ),
@@ -39,7 +54,7 @@ class BScreen extends StatelessWidget {
           {@required String title, Widget widget}) =>
       MaterialButton(
           color: Colors.cyan,
-          minWidth: 150,
+          minWidth: 220,
           child: Text(
             title,
             style: TextStyle(color: Colors.white),

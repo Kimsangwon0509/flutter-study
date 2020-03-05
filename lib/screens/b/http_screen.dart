@@ -7,8 +7,7 @@ import 'dart:convert' as convert;
 * 데이터 가고 오는 것 각각 테스트 진행
 * */
 class HttpScreen extends StatefulWidget {
-  final context = 'https://jsonplaceholder.typicode.com/photos';
-
+  final context = 'https://jsonplaceholder.typicode.com/posts';
 
   @override
   _HttpScreenState createState() => _HttpScreenState();
@@ -16,42 +15,57 @@ class HttpScreen extends StatefulWidget {
 
 class _HttpScreenState extends State<HttpScreen> {
   final textController = TextEditingController();
+  final textController2 = TextEditingController();
+  final textController3 = TextEditingController();
   var _url;
   var _result;
   var _id;
 
-
-  void oneOffRequestGET() async {
-    var url = '${widget.context}/1';
+  void oneOffRequestGET({var data}) async {
+    var url = '${widget.context}/$data';
     var response = await http.get(url);
     convertJsonDecodeAndSetState(response, url);
   }
 
-  void oneOffRequestPOST() async {
-    var url = '${widget.context}/photos';
-    var data = {'id': '5'};
-    var response = await http.post(url, body: data);
+  void oneOffRequestPOST({var data}) async {
+    var url = '${widget.context}';
+    var jsonData = {
+      'title': 'foo',
+      'body': 'bar',
+      'userId': '1'
+    };
+    var response = await http.post(url, body: jsonData);
     convertJsonDecodeAndSetState(response, url);
+    print(url);
   }
 
-  void oneOffRequestPUT() async {
-    var url = '${widget.context}/photos/1';
-    var response = await http.put(url);
-    convertJsonDecodeAndSetState(response, url);
+  void oneOffRequestPUT({var data}) async {
+    var id = data;
+    var jsonData = {
+      'id': '1',
+      'title': 'foo',
+      'body': 'bar',
+      'userId': '1'
+    };
+
+    var url = '${widget.context}/$id';
+    var response = await http.put(url, body: jsonData);
+    convertJsonDecodeAndSetState(response, url, id: id);
   }
 
-  convertJsonDecodeAndSetState(http.Response response, var url) {
+  void convertJsonDecodeAndSetState(http.Response response, var url, {var id}) {
     dynamic jsonResponse;
     if (response.statusCode == 200) {
       jsonResponse = convert.jsonDecode(response.body);
     } else {
       jsonResponse = 'Request failed with status: ${response.statusCode}';
-      print(response.headers.toString());
-      print(response.body.toString());
+      print("header: " + response.headers.toString());
+      print("body: " + response.body.toString());
     }
     setState(() {
+      _id = id;
       _url = url;
-      _result = jsonResponse.toString();
+      _result = response.body.toString(); // 수정 필요
     });
   }
 
@@ -67,9 +81,21 @@ class _HttpScreenState extends State<HttpScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 50),
-            makeTest(title: 'one_off:GET #1', httpFunction: oneOffRequestGET),
-            makeTest(title: 'one_off:POST #2', httpFunction: oneOffRequestPOST),
-            makeTest(title: 'one_off:PUT #3', httpFunction: oneOffRequestPUT),
+            makeTest(
+              title: 'GET',
+              httpFunction: () => oneOffRequestGET(data: textController.text),
+              controller: textController,
+            ),
+            makeTest(
+              title: 'POST',
+              httpFunction: () => oneOffRequestPOST(data: textController.text),
+              controller: textController2,
+            ),
+            makeTest(
+              title: 'PUT',
+              httpFunction: () => oneOffRequestPUT(data: textController.text),
+              controller: textController3,
+            ),
             SizedBox(height: 100),
             Text('#url'),
             Text(_url ?? ''),
@@ -83,28 +109,24 @@ class _HttpScreenState extends State<HttpScreen> {
 
   Widget makeTest({
     @required String title,
-    @required VoidCallback httpFunction,
+    @required Function httpFunction,
+    @required TextEditingController controller,
   }) =>
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(title),
           Container(
-            width: 60,
+            width: 150,
             child: TextField(
-              decoration: InputDecoration(hintText: 'ID'),
-              controller: textController,
-//                onSubmitted: (String value) {
-//                  setState(() {
-//                    _id = value;
-//                  });
-//                  httpFunction();
-//                  print(_id);
-//                },
+              decoration: InputDecoration(hintText: 'get, put -> id'),
+              controller: controller,
             ),
           ),
           FlatButton(
-            onPressed: () {print(textController.text);},
+            onPressed: () {
+              httpFunction();
+            },
             child: Text(
               '전송',
               style: TextStyle(color: Colors.white),
