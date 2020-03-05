@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>384232688237-et1tjk29ijal8uo7cbsuqfhdj2h8gapi.apps.googleusercontent.com</string>
+	<string>384232688237-0ii4v09qe0ens2irng53mjdd1adpq1qm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.384232688237-et1tjk29ijal8uo7cbsuqfhdj2h8gapi</string>
+	<string>com.googleusercontent.apps.384232688237-0ii4v09qe0ens2irng53mjdd1adpq1qm</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>384232688237-ckhi08o2jvpjpg4huikr20o0b0ekfhb5.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>g2e.co.kr.flutterStudy2</string>
+	<string>g2e.co.kr.flutterStudy3</string>
 	<key>PROJECT_ID</key>
 	<string>flutter-study-2d627</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:384232688237:ios:3a22b1dfe5358e5c8a0d64</string>
+	<string>1:384232688237:ios:ea781a7e700810098a0d64</string>
 	<key>DATABASE_URL</key>
 	<string>https://flutter-study-2d627.firebaseio.com</string>
 </dict>

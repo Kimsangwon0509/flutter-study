@@ -58,16 +58,6 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                     child: Text('Google Login'),
                   ),
                 ),
-              if (_success) // 로그인 상태일 때
-                SizedBox(
-                  width: 300,
-                  child: RaisedButton(
-                    onPressed: () {
-                      _signOutWithGoogle();
-                    },
-                    child: Text('Google Logout'),
-                  ),
-                ),
               if (supportsAppleSignIn) // 애플 로그인이 지원될 때
                 SizedBox(
                   width: 300,
@@ -76,6 +66,16 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
                       _signInWithApple();
                     },
                     child: Text('Apple Login'),
+                  ),
+                ),
+              if (_success) // 로그인 상태일 때
+                SizedBox(
+                  width: 300,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _signOutWithGoogle();
+                    },
+                    child: Text('Logout'),
                   ),
                 ),
             ],
@@ -135,30 +135,40 @@ class _FirebaseAuthScreenState extends State<FirebaseAuthScreen> {
 
   void _signInWithApple() async {
     print('_signInWithApple');
-    AuthorizationRequest authorizationRequest =
-        AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName]);
-    AuthorizationResult authorizationResult =
-        await AppleSignIn.performRequests([authorizationRequest]);
-    print(authorizationResult.status);
-    AppleIdCredential appleCredential = authorizationResult.credential;
-    OAuthProvider provider = new OAuthProvider(providerId: "apple.com");
-    AuthCredential credential = provider.getCredential(
-      idToken: String.fromCharCodes(appleCredential.identityToken),
-      accessToken: String.fromCharCodes(appleCredential.authorizationCode),
-    );
-    FirebaseAuth auth = FirebaseAuth.instance;
-    AuthResult authResult =
-        await auth.signInWithCredential(credential); // 인증에 성공한 유저 정보
-    FirebaseUser user = authResult.user;
-
-    final FirebaseUser currentUser = await _auth.currentUser();
-    setState(() {
-      if (user != null) {
-        _success = true;
-        _userID = user.uid;
-      } else {
-        _success = false;
-      }
-    });
+    // 1. perform sign-in request
+    AuthorizationResult result = await AppleSignIn.performRequests([
+      AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+    ]);
+    // 2. check the result
+    switch (result.status) {
+      case AuthorizationStatus.authorized:
+        AppleIdCredential appleIdCredential = result.credential;
+        OAuthProvider oAuthProvider =
+            new OAuthProvider(providerId: "apple.com");
+        AuthCredential credential = oAuthProvider.getCredential(
+          idToken: String.fromCharCodes(appleIdCredential.identityToken),
+          accessToken:
+              String.fromCharCodes(appleIdCredential.authorizationCode),
+        );
+        AuthResult authResult =
+            await _auth.signInWithCredential(credential); // 인증에 성공한 유저 정보
+        FirebaseUser user = authResult.user;
+        final FirebaseUser currentUser = await _auth.currentUser();
+        setState(() {
+          if (user != null) {
+            _success = true;
+            _userID = user.uid;
+          } else {
+            _success = false;
+          }
+        });
+        break;
+      case AuthorizationStatus.error:
+        print(result.error.toString());
+        break;
+      case AuthorizationStatus.cancelled:
+        print(result.error.toString());
+        break;
+    }
   }
 }
