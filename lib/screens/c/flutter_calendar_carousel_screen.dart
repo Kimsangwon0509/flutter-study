@@ -220,6 +220,8 @@ class _CarouselScreenState extends State<CarouselScreen> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Carousel Calendar'),
+//
+//          title: new Text(widget.title),
         ),
         body: SingleChildScrollView(
           child: Column(
