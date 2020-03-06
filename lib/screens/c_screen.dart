@@ -7,6 +7,8 @@ import 'package:flutter_study/screens/c/alertbridge.dart';
 import 'package:flutter_study/screens/c/camera_test.dart';
 import 'package:flutter_study/screens/c/font_test.dart';
 
+import 'package:flutter_study/screens/c/shared_preference_test.dart';
+
 class CScreen extends StatelessWidget {
   static const String id = 'c_screen';
 
@@ -42,7 +44,7 @@ class CScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Container(
                   width: 200.0,
                   child: MaterialButton(
@@ -57,7 +59,7 @@ class CScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Container(
                   width: 200.0,
                   child: MaterialButton(
@@ -71,7 +73,7 @@ class CScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Container(
                   width: 200.0,
                   child: MaterialButton(
@@ -85,7 +87,7 @@ class CScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Container(
                   width: 200.0,
                   child: MaterialButton(
@@ -100,7 +102,7 @@ class CScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Container(
                   width: 200.0,
                   child: MaterialButton(
@@ -115,7 +117,7 @@ class CScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Container(
                   width: 200.0,
                   child: MaterialButton(
@@ -125,7 +127,24 @@ class CScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FontTest()),
+                        MaterialPageRoute(
+                            builder: (context) => FontTestScreen()),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                Container(
+                  width: 200.0,
+                  child: MaterialButton(
+                    color: Colors.cyan,
+                    child: Text('Shared Preference',
+                        style: TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SharedPreferenceScreen()),
                       );
                     },
                   ),
