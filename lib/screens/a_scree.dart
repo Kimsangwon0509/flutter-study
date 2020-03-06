@@ -7,6 +7,7 @@ import 'package:flutter_study/screens/a/provider_screen.dart';
 import 'package:flutter_study/screens/a/sliver_screen.dart';
 import 'package:flutter_study/screens/a/webview_screen.dart';
 
+import 'a/bluetooth_screen.dart';
 import 'a/chart_screen2.dart';
 import 'a/dash_screen.dart';
 import 'a/login_screen1.dart';
@@ -221,6 +222,26 @@ class AScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Provider화면',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              Container(
+                width: 200.0,
+                child: FlatButton(
+                  color: Colors.cyan,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return BluetoothScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Bluetooth화면',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
