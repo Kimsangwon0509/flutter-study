@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -66,9 +64,12 @@ class _FirstRouteState extends State<FirstRoute> {
   _deleteSession() async {
     _pref = await SharedPreferences.getInstance();
     setState(() {
-      _pref.setString('userid', null);
-      _pref.setString('userpw', null);
-      _pref.setBool('checkLog', false);
+      _userid = (_pref.getString('userid' ?? null));
+      _userpw = (_pref.getString('userpw' ?? null));
+      if (_pref.getBool('checkLog' ?? null))
+        logined = true;
+      else
+        logined = false;
     });
   }
 
@@ -150,6 +151,9 @@ class _FirstRouteState extends State<FirstRoute> {
                     child: Text('로그아웃'),
                     onPressed: () {
                       setState(() {
+                        _pref.setString('userid', null);
+                        _pref.setString('userpw', null);
+                        _pref.setBool('checkLog', false);
                         _deleteSession();
                       });
                     },
