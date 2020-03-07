@@ -8,6 +8,7 @@ import 'package:flutter_study/screens/b/http_screen.dart';
 import 'package:flutter_study/screens/b/jo1_screen.dart';
 import 'package:flutter_study/screens/b/jo7_screen1.dart';
 import 'package:flutter_study/screens/b/speech_screen.dart';
+import 'package:flutter_study/screens/b/sqflite_screen.dart';
 
 class BScreen extends StatelessWidget {
   static const String id = 'b_screen';
@@ -42,6 +43,8 @@ class BScreen extends StatelessWidget {
                     widget: FlutterCleanCalendarScreen()),
                 _pageRouteButton(context,
                     title: 'calendar_strip', widget: CalendarStripScreen()),
+                _pageRouteButton(context,
+                    title: 'sqlflite', widget: SqfliteScreen()),
               ],
             ),
           ),
