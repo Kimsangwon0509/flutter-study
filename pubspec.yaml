@@ -34,7 +34,7 @@ dependencies:
   image_picker: ^0.6.3+4
   firebase_messaging: ^6.0.9
   provider: ^4.0.4
-  #flutter_blue: ^0.6.3+1
+  flutter_ble: ^0.5.3
   flutter_clean_calendar: ^1.0.1
   calendar_strip: ^1.0.6
 
@@ -43,6 +43,8 @@ dependencies:
   sqflite: ^1.2.1
   path: ^1.6.4
   path_provider: ^1.6.5
+  google_fonts: ^0.3.9
+  shared_preferences: ^0.5.3+4
 
 dev_dependencies:
   flutter_test:
@@ -51,4 +53,13 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-  - images/a/
+    - images/a/
+
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Bold.ttf
+
+    - family: PlayfairDisplay
+      fonts:
+        - asset: fonts/PlayfairDisplay-Bold.ttf
