@@ -12,6 +12,7 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
   /*  Member(String no, String id, String name) */
   Database _db;
   _RawQuery _rawQuery;
+  _HelperQuery _helperQuery;
   String _memberData = '초기값';
   TextEditingController idController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -31,10 +32,18 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
   void initQuery() async {
     _db = await _DB.getConnection();
     _rawQuery = _RawQuery(database: _db);
+    _helperQuery = _HelperQuery(database: _db);
   }
 
   void _showMemberData() async {
     List<Map> _result = await _rawQuery._select();
+    setState(() {
+      _memberData = _result.toString();
+    });
+  }
+
+  void _showMemberData2() async {
+    List<Map> _result = await _helperQuery._select();
     setState(() {
       _memberData = _result.toString();
     });
@@ -54,6 +63,7 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
             SizedBox(height: 30),
             rawQueryButtons(),
             Divider(),
+            helperQueryButtons(),
             Container(
               alignment: Alignment.center,
               child: Text('--> member data: $_memberData'),
@@ -95,6 +105,16 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
           _flatButton(title: 'insert', function: _rawQuery?._insert),
           _flatButton(title: 'update', function: _rawQuery?._update),
           _flatButton(title: 'delete', function: _rawQuery?._delete),
+        ],
+      );
+
+  Widget helperQueryButtons() => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _flatButton(title: 'select', function: _showMemberData2),
+          _flatButton(title: 'insert', function: _helperQuery?._insert),
+          _flatButton(title: 'update', function: _helperQuery?._update),
+          _flatButton(title: 'delete', function: _helperQuery?._delete),
         ],
       );
 
@@ -145,6 +165,7 @@ class _DB {
 
 class _RawQuery {
   Database database;
+
   _RawQuery({@required this.database});
 
   ///   execute: Execute an SQL query with "no return value"
@@ -168,7 +189,7 @@ class _RawQuery {
   void _update() async {
     int _count = await database.rawUpdate(
       'update member set id = ?, name = ? where id = ?',
-      ['첫번째 멤버', '첫번째 업데이트', '첫번째'],
+      ['첫번째', '업데이트', '첫번째 멤버'],
     );
     debugPrint('rawUpdate count: $_count');
   }
@@ -179,5 +200,43 @@ class _RawQuery {
       ['raw2'],
     );
     debugPrint('rawDelete count: $_count');
+  }
+}
+
+class _HelperQuery {
+  Database database;
+
+  _HelperQuery({@required this.database});
+
+  void _insert({String id, String name}) async {
+    int _no =
+        await database.insert('member', {'id': 'helper', 'name': 'helper'});
+    debugPrint('insert no: $_no');
+  }
+
+  Future<List<Map>> _select() async {
+    List<Map> _result =
+        await database.query('member', where: 'no = ?', whereArgs: [1]);
+    debugPrint('select rawQuery result: $_result');
+    return _result;
+  }
+
+  void _update() async {
+    int _count = await database.update(
+      'memmber',
+      {'id': 'helper update', 'name': 'helper update'},
+      where: 'id = ?',
+      whereArgs: ['helpder'],
+    );
+    debugPrint('rawUpdate count: $_count');
+  }
+
+  void _delete() async {
+    int _count = await database.delete(
+      'member',
+      where: 'id = ?',
+      whereArgs: ['helper'],
+    );
+    debugPrint('delete count: $_count');
   }
 }
