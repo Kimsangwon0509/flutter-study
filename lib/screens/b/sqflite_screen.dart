@@ -14,8 +14,8 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
   _RawQuery _rawQuery;
   _HelperQuery _helperQuery;
   String _memberData = '초기값';
-  TextEditingController idController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController _idController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
 
   @override
   void initState() {
@@ -27,6 +27,8 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
   void dispose() {
     super.dispose();
     _db.close();
+    _idController.dispose();
+    _nameController.dispose();
   }
 
   void initQuery() async {
@@ -79,7 +81,7 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
         child: Column(
           children: <Widget>[
             TextFormField(
-              controller: idController,
+              controller: _idController,
               decoration: InputDecoration(
                 icon: Icon(Icons.alternate_email),
                 hintText: 'someone@email.com',
@@ -87,7 +89,7 @@ class _SqfliteScreenState extends State<SqfliteScreen> {
               ),
             ),
             TextFormField(
-              controller: nameController,
+              controller: _nameController,
               decoration: InputDecoration(
                 icon: Icon(Icons.person_outline),
                 hintText: 'What do people call you?',
