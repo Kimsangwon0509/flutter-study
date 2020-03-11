@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study/screens/b/google_maps_flutter.dart';
 import 'package:flutter_study/screens/b_screen.dart';
@@ -17,6 +18,7 @@ class MapListScreen extends StatelessWidget {
               title: 'google_maps_flutter0.5.24+1',
               widget: GoogleMapsFlutterScreen(),
             ),
+            Image.asset('images/a/amb.png'),
           ],
         ),
       ),
