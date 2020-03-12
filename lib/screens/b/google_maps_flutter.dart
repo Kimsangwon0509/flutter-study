@@ -89,13 +89,9 @@ class _GoogleMapsFlutterScreenState extends State<GoogleMapsFlutterScreen> {
     initCircles();
 
     _timer = Timer.periodic(Duration(seconds: 3), (timer) {
-      debugPrint('---> timer start!');
-
       setState(() {
         _target = _polyline_points[_index];
       });
-      debugPrint('현재 위치: ' + _index.toString());
-      debugPrint('현재 위치: ' + _target.toString());
     });
   }
 
